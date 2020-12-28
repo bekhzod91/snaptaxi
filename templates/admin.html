@@ -1,0 +1,14 @@
+{% for user in users %}
+  <button onclick="onClick(event, '{{ user }}')">Attach order for {{ user }}</button>
+{% endfor %}
+<script>
+   async function onClick(event, user) {
+   	await fetch('/api/order-create', {
+		method: 'POST',
+		headers: {
+      			'Content-Type': 'application/json'
+    		},
+		body: JSON.stringify({'username': user})
+	})
+   }
+</script>
